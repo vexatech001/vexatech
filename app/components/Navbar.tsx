@@ -84,7 +84,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3 group shrink-0">
           <motion.div 
             style={{ scale: logoScale }}
-            className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center transition-transform duration-[500ms] ease-out group-hover:rotate-6"
+            className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center transition-transform duration-500 ease-out group-hover:rotate-6"
           >
             <Image 
               src="/vexatechlogo.svg" 
@@ -108,7 +108,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "relative px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.1em] transition-all duration-300 rounded-full group",
+                  "relative px-3 py-1.5 text-[10px] font-black uppercase tracking-widest transition-all duration-300 rounded-full group",
                   isActive ? "text-neutral-900" : "text-neutral-500 hover:text-neutral-900"
                 )}
               >
@@ -152,7 +152,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-xl md:hidden"
+              className="fixed inset-0 z-60 bg-black/60 backdrop-blur-xl md:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
             <motion.div
@@ -160,7 +160,7 @@ export default function Navbar() {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed left-0 right-0 top-0 h-[65vh] bg-white z-[70] rounded-b-[3rem] p-12 flex flex-col md:hidden border-b border-zinc-100 shadow-2xl"
+              className="fixed left-0 right-0 top-0 h-[65vh] bg-white z-70 rounded-b-[3rem] p-12 flex flex-col md:hidden border-b border-zinc-100 shadow-2xl"
             >
               <div className="flex items-center justify-between mb-20">
                 <span className="text-neutral-950 font-black tracking-widest text-lg uppercase">VEXA TECH</span>
