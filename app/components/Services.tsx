@@ -147,7 +147,7 @@ export default function Services() {
         </div>
 
         {/* ── RIGHT: Animated Stack ── */}
-        <div className="relative h-auto lg:h-[600px] flex items-center justify-center">
+        <div className="relative h-[500px] lg:h-[600px] flex items-center justify-center">
           
           {/* Mobile view: Simple list */}
           <div className="lg:hidden flex flex-col gap-5 w-full">

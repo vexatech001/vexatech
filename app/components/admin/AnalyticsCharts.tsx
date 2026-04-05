@@ -68,9 +68,9 @@ export default function AnalyticsCharts({ leads }: AnalyticsChartsProps) {
     <div className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Leads Growth Chart */}
-        <div className="bg-white p-5 md:p-8 rounded-[32px] border border-gray-100 shadow-sm transition-all overflow-hidden">
-          <h3 className="text-base md:text-lg font-bold text-gray-900 mb-6 md:mb-8 tracking-tight">Leads Growth (Last 7 Days)</h3>
-          <div className="h-[250px] md:h-[300px] w-full">
+        <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm">
+          <h3 className="text-lg font-bold text-gray-900 mb-8">Leads Growth (Last 7 Days)</h3>
+          <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={leadsOverTime}>
                 <defs>
@@ -115,9 +115,9 @@ export default function AnalyticsCharts({ leads }: AnalyticsChartsProps) {
         </div>
 
         {/* Status Distribution */}
-        <div className="bg-white p-5 md:p-8 rounded-[32px] border border-gray-100 shadow-sm transition-all overflow-hidden">
-          <h3 className="text-base md:text-lg font-bold text-gray-900 mb-6 md:mb-8 tracking-tight">Status Distribution</h3>
-          <div className="h-[250px] md:h-[300px] w-full flex items-center justify-center relative">
+        <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm">
+          <h3 className="text-lg font-bold text-gray-900 mb-8">Status Distribution</h3>
+          <div className="h-[300px] w-full flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -125,7 +125,7 @@ export default function AnalyticsCharts({ leads }: AnalyticsChartsProps) {
                   cx="50%"
                   cy="50%"
                   innerRadius={60}
-                  outerRadius={90}
+                  outerRadius={100}
                   paddingAngle={5}
                   dataKey="value"
                 >
@@ -144,28 +144,27 @@ export default function AnalyticsCharts({ leads }: AnalyticsChartsProps) {
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute flex flex-col items-center justify-center pointer-events-none">
-               <span className="text-xl md:text-2xl font-black text-gray-900 leading-none">{leads.length}</span>
-               <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">Total Assets</span>
+               <span className="text-2xl font-bold text-gray-900">{leads.length}</span>
+               <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Service Distribution Bar Chart */}
-      <div className="bg-white p-5 md:p-8 rounded-[32px] border border-gray-100 shadow-sm transition-all overflow-hidden">
-        <h3 className="text-base md:text-lg font-bold text-gray-900 mb-6 md:mb-8 tracking-tight">Top Requested Services</h3>
-        <div className="h-[280px] md:h-[300px] w-full">
+      <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm">
+        <h3 className="text-lg font-bold text-gray-900 mb-8">Top Requested Services</h3>
+        <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <ReBarChart data={serviceDistribution} layout="vertical" margin={{ left: 0, right: 30 }}>
+            <ReBarChart data={serviceDistribution} layout="vertical" margin={{ left: 40 }}>
               <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
               <XAxis type="number" hide />
               <YAxis 
                 dataKey="name" 
                 type="category" 
-                width={100}
                 axisLine={false} 
                 tickLine={false}
-                tick={{ fill: '#64748b', fontSize: 10, fontWeight: 700 }}
+                tick={{ fill: '#475569', fontSize: 11, fontWeight: 600 }}
               />
               <Tooltip 
                 cursor={{ fill: 'transparent' }}
@@ -175,7 +174,7 @@ export default function AnalyticsCharts({ leads }: AnalyticsChartsProps) {
                   border: '1px solid #f1f5f9'
                 }}
               />
-              <Bar dataKey="value" radius={[0, 8, 8, 0]} barSize={20}>
+              <Bar dataKey="value" radius={[0, 8, 8, 0]} barSize={24}>
                 {serviceDistribution.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[0]} opacity={1 - (index * 0.15)} />
                 ))}

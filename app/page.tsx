@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import CinematicLandingHero from "@/components/ui/cinematic-landing-hero";
 
+// updated
 export default function Home() {
   return (
     <main className="min-h-screen bg-bg-light text-text-dark selection:bg-brand-accent/30 relative">

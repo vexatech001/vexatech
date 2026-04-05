@@ -132,33 +132,33 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         
         {/* ── TOP CTA SECTION ── */}
-        <div ref={ctaRef} className="mb-20 lg:mb-32">
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center border-b border-zinc-100 pb-16 md:pb-24">
+        <div ref={ctaRef} className="mb-24 lg:mb-32">
+          <div className="grid lg:grid-cols-2 gap-12 items-center border-b border-zinc-100 pb-20">
             <div>
               <p className="text-brand-accent font-bold uppercase tracking-[0.25em] text-[10px] mb-6">
                 Ready to transform?
               </p>
-              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-neutral-900 leading-[1.1] tracking-tighter mb-8 max-w-2xl">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-neutral-900 leading-[1.1] tracking-tight mb-8">
                 Let’s build <span className="text-gradient-primary">what’s next.</span>
               </h2>
-              <p className="text-zinc-500 text-base md:text-xl font-light leading-relaxed max-w-lg">
+              <p className="text-zinc-500 text-lg md:text-xl font-light leading-relaxed max-w-lg">
                 Your vision, our architecture. Together, we create digital ecosystems that define industries.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 lg:justify-end">
+            <div className="flex flex-col sm:flex-row items-center gap-6 lg:justify-end">
               <Link 
                 href="#contact" 
-                className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 bg-neutral-900 text-white px-8 md:px-10 py-5 rounded-full overflow-hidden transition-all duration-500 hover:scale-[1.05] active:scale-95 shadow-xl shadow-neutral-200"
+                className="group relative inline-flex items-center justify-center gap-3 bg-neutral-900 text-white px-10 py-5 rounded-full overflow-hidden transition-all duration-500 hover:scale-[1.05] active:scale-95 shadow-xl shadow-neutral-200"
               >
                 <span className="relative z-10 font-bold uppercase tracking-widest text-[11px]">Get Started</span>
                 <ArrowUpRight className="relative z-10 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" size={18} />
                 <div className="absolute inset-0 bg-brand-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               </Link>
               <Link 
-                href={getGmailLink("vexatech.connect@gmail.com", "Project Inquiry")} 
+                href={getGmailLink("contact@vexatech.com", "Project Inquiry")} 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-5 text-[11px] font-bold uppercase tracking-widest text-neutral-900 hover:opacity-70 transition-all duration-300"
+                className="group inline-flex items-center gap-3 px-8 py-5 text-[11px] font-bold uppercase tracking-widest text-neutral-900 hover:opacity-70 transition-all duration-300"
               >
                 <Mail size={16} />
                 Send Inquiry
@@ -177,13 +177,12 @@ export default function Footer() {
                 <Image 
                   src="/vexatechlogo.svg" 
                   alt="VEXA TECH" 
-                  width={40} 
-                  height={40} 
-                  priority
-                  className="w-full h-full object-contain"
+                  width={32} 
+                  height={32} 
+                  className="w-8 h-8 object-contain"
                 />
               </div>
-              <span className="font-black tracking-[0.2em] uppercase text-neutral-900 text-sm md:text-base lg:text-lg">
+              <span className="text-xl font-black text-neutral-900 tracking-tight transition-colors group-hover:text-brand-accent">
                 VEXA TECH
               </span>
             </Link>
@@ -282,9 +281,9 @@ export default function Footer() {
             </div>
           </div>
           
-          <p className="text-[10px] md:text-xs font-medium text-brand-accent/50 italic tracking-widest">
+          {/* <p className="text-[10px] md:text-xs font-medium text-brand-accent/50 italic tracking-widest">
             Designed by <span className="font-bold">Hamenath B</span>
-          </p>
+          </p> */}
         </div>
 
       </div>

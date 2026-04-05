@@ -58,7 +58,7 @@ export default function LeadsTable({ leads, onViewDetails }: LeadsTableProps) {
     <div className="space-y-8">
       
       {/* Filtering Actions */}
-      <div className="flex flex-col lg:flex-row items-center gap-4 bg-white p-4 rounded-[28px] border border-gray-100 shadow-sm shadow-gray-200/40">
+      <div className="flex flex-col md:flex-row items-center gap-4 bg-white p-4 rounded-[28px] border border-gray-100 shadow-sm shadow-gray-200/40">
         <div className="flex-1 w-full bg-gray-50 border border-transparent rounded-2xl px-5 py-3.5 flex items-center gap-3 focus-within:bg-white focus-within:border-blue-600/30 transition-all group shadow-inner">
           <Search size={18} className="text-gray-300 group-focus-within:text-blue-600 transition-colors" />
           <input 
@@ -69,9 +69,9 @@ export default function LeadsTable({ leads, onViewDetails }: LeadsTableProps) {
           />
         </div>
         
-        <div className="flex items-center gap-3 w-full lg:w-auto">
+        <div className="flex items-center gap-3 w-full md:w-auto">
           <select 
-            className="flex-1 lg:flex-none bg-white border border-gray-100 rounded-2xl px-6 py-3.5 text-xs font-bold font-sans outline-none cursor-pointer hover:bg-gray-50 transition-all text-gray-500 hover:text-gray-900 shadow-sm"
+            className="bg-white border border-gray-100 rounded-2xl px-6 py-3.5 text-xs font-bold outline-none cursor-pointer hover:bg-gray-50 transition-all text-gray-500 hover:text-gray-900 shadow-sm"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as any)}
           >
@@ -81,185 +81,122 @@ export default function LeadsTable({ leads, onViewDetails }: LeadsTableProps) {
             <option value="in_progress">Phase: In Progress</option>
             <option value="closed">Phase: Closed</option>
           </select>
-          <button className="p-3.5 bg-white border border-gray-100 rounded-2xl text-gray-300 hover:text-blue-600 transition-all shadow-sm shrink-0">
+          <button className="p-3.5 bg-white border border-gray-100 rounded-2xl text-gray-300 hover:text-blue-600 transition-all shadow-sm">
             <ArrowUpDown size={18} />
           </button>
         </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className="space-y-4">
-        
-        {/* ── DESKTOP TABLE VIEW ── */}
-        <div className="hidden md:block bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden overflow-x-auto relative group">
-          <table className="w-full text-left border-collapse min-w-[900px]">
-            <thead>
-              <tr className="bg-gray-50/50 border-b border-gray-100">
-                <th className="px-10 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Prospect Details</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Deployment Contact</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Security Stage</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Ingest Protocol</th>
-                <th className="px-10 py-6 text-right text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Control</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              <AnimatePresence mode="popLayout">
-                {currentLeads.map((lead, i) => (
-                  <motion.tr
-                    key={lead.id}
-                    layout
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="group hover:bg-gray-50/50 transition-all cursor-default"
-                  >
-                    <td className="px-10 py-8">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-white border border-gray-100 text-gray-400 font-bold flex items-center justify-center text-lg shadow-sm group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-500">
-                          {lead.fullName.charAt(0)}
-                        </div>
-                        <div className="space-y-0.5">
-                          <span className="text-[15px] font-bold text-gray-900 leading-none block">{lead.fullName}</span>
-                          <span className="text-[10px] font-black text-gray-300 uppercase tracking-widest block">Reference: {lead.id?.substring(0, 8)}</span>
-                        </div>
+      {/* Main Table Structure */}
+      <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden overflow-x-auto relative group">
+        <table className="w-full text-left border-collapse min-w-[900px]">
+          <thead>
+            <tr className="bg-gray-50/50 border-b border-gray-100">
+              <th className="px-10 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Prospect Details</th>
+              <th className="px-8 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Deployment Contact</th>
+              <th className="px-8 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Security Stage</th>
+              <th className="px-8 py-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Ingest Protocol</th>
+              <th className="px-10 py-6 text-right text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Control</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-50">
+            <AnimatePresence mode="popLayout">
+              {currentLeads.map((lead, i) => (
+                <motion.tr
+                  key={lead.id}
+                  layout
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="group hover:bg-gray-50/50 transition-all cursor-default"
+                >
+                  <td className="px-10 py-8">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-white border border-gray-100 text-gray-400 font-bold flex items-center justify-center text-lg shadow-sm group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-500">
+                        {lead.fullName.charAt(0)}
                       </div>
-                    </td>
-                    <td className="px-8 py-8">
-                      <div className="space-y-1">
-                        <p className="text-xs font-bold text-gray-700 flex items-center gap-2">
-                          <Mail size={12} className="text-gray-300 group-hover:text-blue-600 transition-colors" />
-                          {lead.email}
-                        </p>
-                        <p className="text-[11px] font-semibold text-gray-400 flex items-center gap-2">
-                          <Phone size={12} />
-                          {lead.phone}
-                        </p>
+                      <div className="space-y-0.5">
+                        <span className="text-[15px] font-bold text-gray-900 leading-none block">{lead.fullName}</span>
+                        <span className="text-[10px] font-black text-gray-300 uppercase tracking-widest block">Reference: {lead.id?.substring(0, 8)}</span>
                       </div>
-                    </td>
-                    <td className="px-8 py-8">
-                      <span className={cn(
-                          "px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border",
-                          statusColors[lead.status]
-                        )}>
-                          {lead.status.replace('_', ' ')}
-                        </span>
-                    </td>
-                    <td className="px-8 py-8">
-                        <p className="text-xs font-bold text-gray-900 mb-1">{lead.serviceRequired}</p>
-                        <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest opacity-40 italic">{formatDate(lead.createdAt, "yyyy.MM.dd")}</p>
-                    </td>
-                    <td className="px-10 py-8 text-right">
-                      <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button 
-                          onClick={() => onViewDetails(lead)}
-                          className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-blue-600 hover:border-blue-600 transition-all shadow-sm active:scale-95"
-                        >
-                          <Eye size={18} />
-                        </button>
-                        <button className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-red-600 hover:border-red-600 transition-all shadow-sm active:scale-95">
-                          <Trash2 size={18} />
-                        </button>
-                      </div>
-                    </td>
-                  </motion.tr>
-                ))}
-              </AnimatePresence>
-            </tbody>
-          </table>
-        </div>
-
-        {/* ── MOBILE CARD LIST VIEW ── */}
-        <div className="md:hidden space-y-4">
-          <AnimatePresence mode="popLayout">
-            {currentLeads.map((lead, i) => (
-              <motion.div
-                key={lead.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ delay: i * 0.05 }}
-                onClick={() => onViewDetails(lead)}
-                className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm active:bg-gray-50 transition-colors"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-lg shadow-blue-100">
-                      {lead.fullName.charAt(0)}
                     </div>
-                    <div>
-                      <h4 className="text-[15px] font-bold text-gray-900 tracking-tight">{lead.fullName}</h4>
-                      <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest leading-none mt-1">Ref: {lead.id?.substring(0, 6)}</p>
+                  </td>
+                  <td className="px-8 py-8">
+                    <div className="space-y-1">
+                      <p className="text-xs font-bold text-gray-700 flex items-center gap-2">
+                        <Mail size={12} className="text-gray-300 group-hover:text-blue-600 transition-colors" />
+                        {lead.email}
+                      </p>
+                      <p className="text-[11px] font-semibold text-gray-400 flex items-center gap-2">
+                        <Phone size={12} />
+                        {lead.phone}
+                      </p>
                     </div>
-                  </div>
-                  <span className={cn(
-                    "px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border",
-                    statusColors[lead.status]
-                  )}>
-                    {lead.status.replace('_', ' ')}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="space-y-1">
-                    <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Protocol</p>
-                    <p className="text-xs font-bold text-gray-900">{lead.serviceRequired}</p>
-                  </div>
-                  <div className="space-y-1 text-right">
-                    <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Ingest</p>
-                    <p className="text-xs font-bold text-gray-500">{formatDate(lead.createdAt, "yyyy.MM.dd")}</p>
-                  </div>
-                </div>
-
-                <div className="pt-5 border-t border-gray-50 flex items-center justify-between">
-                   <div className="flex items-center gap-4">
-                      <Mail size={14} className="text-gray-300" />
-                      <Phone size={14} className="text-gray-300" />
-                   </div>
-                   <div className="flex items-center gap-2">
-                      <button className="px-4 py-2 bg-gray-50 rounded-xl text-[10px] font-black uppercase text-gray-400 tracking-widest">Details</button>
-                      <button className="p-2 bg-red-50 text-red-500 rounded-xl"><Trash2 size={16} /></button>
-                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+                  </td>
+                  <td className="px-8 py-8">
+                     <span className={cn(
+                        "px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border",
+                        statusColors[lead.status]
+                      )}>
+                        {lead.status}
+                      </span>
+                  </td>
+                  <td className="px-8 py-8">
+                      <p className="text-xs font-bold text-gray-900 mb-1">{lead.serviceRequired}</p>
+                      <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest opacity-40 italic">{formatDate(lead.createdAt, "yyyy.MM.dd")}</p>
+                  </td>
+                  <td className="px-10 py-8 text-right">
+                    <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button 
+                        onClick={() => onViewDetails(lead)}
+                        className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-blue-600 hover:border-blue-600 transition-all shadow-sm active:scale-95"
+                      >
+                        <Eye size={18} />
+                      </button>
+                      <button className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-red-600 hover:border-red-600 transition-all shadow-sm active:scale-95">
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </td>
+                </motion.tr>
+              ))}
+            </AnimatePresence>
+          </tbody>
+        </table>
 
         {/* Empty Visual State */}
         {currentLeads.length === 0 && (
-          <div className="bg-white rounded-[32px] border border-gray-100 p-16 md:p-24 flex flex-col items-center justify-center text-center">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-[32px] bg-gray-50 flex items-center justify-center border border-gray-100 mb-6 text-gray-200">
-               <PackageSearch size={40} />
+          <div className="p-24 flex flex-col items-center justify-center text-center">
+            <div className="w-24 h-24 rounded-[32px] bg-gray-50 flex items-center justify-center border border-gray-100 mb-6 text-gray-200">
+               <PackageSearch size={48} />
             </div>
-            <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1">No matches found in pipeline</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-1">No matches found in pipeline</h3>
             <p className="text-xs font-semibold text-gray-400 max-w-xs uppercase tracking-widest">Modify your diagnostic filters or clear search to refresh entries.</p>
           </div>
         )}
-
       </div>
 
       {/* Pagination Footer */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 px-2">
-        <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.3em] order-2 sm:order-1">
-          Inventorying {currentLeads.length} of {filteredLeads.length} Inquiries
+        <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.3em]">
+          Inventorying {currentLeads.length} of {filteredLeads.length} Global Inquiries
         </p>
-        <div className="flex items-center gap-3 order-1 sm:order-2 w-full sm:w-auto">
+        <div className="flex items-center gap-3">
           <button 
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-            className="flex-1 sm:flex-none h-11 px-4 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
+            className="w-11 h-11 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
           >
             <ChevronLeft size={20} />
           </button>
-          <div className="flex-1 sm:flex-none px-6 h-11 flex items-center justify-center rounded-2xl bg-white border border-gray-100 text-[10px] font-black uppercase text-gray-400 tracking-widest shadow-inner">
-            {currentPage} / {totalPages || 1}
+          <div className="px-6 h-11 flex items-center rounded-2xl bg-white border border-gray-100 text-[10px] font-black uppercase text-gray-400 tracking-widest shadow-inner">
+            Index {currentPage} / {totalPages || 1}
           </div>
           <button 
             disabled={currentPage === totalPages || totalPages === 0}
             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-            className="flex-1 sm:flex-none h-11 px-4 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
+            className="w-11 h-11 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
           >
             <ChevronRight size={20} />
           </button>

@@ -40,10 +40,10 @@ export default function StatsCard({ label, value, icon: Icon, index, trend }: St
       </div>
 
       <div className="space-y-1 relative">
-        <p className="text-[11px] md:text-sm font-bold text-gray-400 tracking-tight flex items-center gap-2 group-hover:text-gray-500 transition-colors">
+        <p className="text-sm font-bold text-gray-400 tracking-tight flex items-center gap-2 group-hover:text-gray-500 transition-colors">
           {label}
         </p>
-        <h3 className="text-2xl md:text-3xl font-black text-gray-950 tracking-tight leading-none tabular-nums">
+        <h3 className="text-3xl font-bold text-gray-950 tracking-tight leading-none tabular-nums">
           {value}
         </h3>
       </div>

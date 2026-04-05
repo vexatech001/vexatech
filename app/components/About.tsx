@@ -44,10 +44,10 @@ export default function About() {
           {/* Left: Text Content */}
           <div ref={textRef} className="flex flex-col justify-center lg:pr-8">
             <h3 className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4">About Vexa Tech</h3>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-neutral-900 leading-[1.1] tracking-tight border-l-4 border-brand-accent pl-5">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-neutral-900 leading-[1.1] tracking-tight border-l-4 border-brand-accent pl-5 -ml-6">
               We architect <span className="text-gradient-primary">digital</span> ecosystems
             </h2>
-            <div className="space-y-6 text-zinc-500 text-base md:text-lg leading-relaxed font-light">
+            <div className="space-y-6 text-zinc-500 text-lg leading-relaxed font-light">
               <p>
                 We exist to elevate brands. VEXA TECH is an elite digital engineering firm specialized in high-performance web architecture, strategic UI/UX design, and scalable business systems.
               </p>
@@ -93,7 +93,6 @@ export default function About() {
                   src="/vexatechlogo.svg"
                   alt="VEXA TECH Logo"
                   fill
-                  priority
                   className="object-contain"
                 />
               </div>
