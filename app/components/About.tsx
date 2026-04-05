@@ -93,6 +93,7 @@ export default function About() {
                   src="/vexatechlogo.svg"
                   alt="VEXA TECH Logo"
                   fill
+                  priority
                   className="object-contain"
                 />
               </div>

@@ -34,25 +34,23 @@ export default function Metrics() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-20 md:py-24 lg:py-28 bg-white relative border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          
+    <section ref={containerRef} className="py-20 md:py-32 bg-white relative border-y border-zinc-100 selection:bg-brand-accent/10">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {metrics.map((metric, idx) => (
             <div 
               key={idx} 
               ref={el => { cardsRef.current[idx] = el; }}
-              className="metric-card p-8 rounded-2xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col items-center justify-center group hover:bg-white transition-all duration-500 hover:shadow-md"
+              className="metric-card p-8 md:p-10 rounded-3xl bg-zinc-50/50 border border-zinc-100 flex flex-col items-center justify-center group hover:bg-white transition-all duration-500 hover:shadow-xl hover:shadow-neutral-200/40 hover:-translate-y-1.5"
             >
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2 group-hover:text-brand-accent transition-colors duration-300">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 mb-2 group-hover:text-brand-accent transition-colors duration-300 tracking-tighter">
                 {metric.value}
               </h3>
-              <p className="text-gray-500 text-sm md:text-base font-medium tracking-wide uppercase">
+              <p className="text-[10px] md:text-xs font-bold text-zinc-400 tracking-[0.2em] uppercase group-hover:text-zinc-600 transition-colors">
                 {metric.label}
               </p>
             </div>
           ))}
-
         </div>
       </div>
     </section>

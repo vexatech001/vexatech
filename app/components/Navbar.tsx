@@ -22,24 +22,30 @@ export default function Navbar() {
   // ── Optimized Apple-Style Smoothing ───────────────────────────────
   // First, apply a spring to the scroll value itself for "liquid" feel
   const smoothScroll = useSpring(scrollY, {
-    stiffness: 120,
-    damping: 20,
-    mass: 0.2,
+    stiffness: 80,
+    damping: 30,
+    mass: 0.5,
   });
 
-  // ── Scroll Range [0 to 220px] ──────────────────────────────────────
-  const range = [0, 220];
+  // ── Scroll Range [0 to 180px] ──────────────────────────────────────
+  const range = [0, 180];
 
-  // Continuous Transforms
-  const width         = useTransform(smoothScroll, range, ["95%", "76%"]);
-  const paddingY      = useTransform(smoothScroll, range, [18, 10]);
-  const paddingX      = useTransform(smoothScroll, range, [32, 18]);
-  const radius        = useTransform(smoothScroll, range, [32, 999]);
-  const top           = useTransform(smoothScroll, range, [24, 12]);
-  const logoScale     = useTransform(smoothScroll, range, [1, 0.92]);
-  const background    = useTransform(smoothScroll, range, ["rgba(255,255,255,1)", "rgba(255,255,255,1)"]);
-  const shadow        = useTransform(smoothScroll, range, ["0 4px 12px rgba(0,0,0,0.04)", "0 10px 30px rgba(0,0,0,0.12)"]);
-  const backdrop      = useTransform(smoothScroll, range, ["blur(0px)", "blur(18px)"]);
+  // Fluid Transforms for Apple-level morph
+  const width         = useTransform(smoothScroll, range, ["100%", "72%"]);
+  const paddingY      = useTransform(smoothScroll, range, [22, 10]);
+  const paddingX      = useTransform(smoothScroll, range, [40, 20]);
+  const radius        = useTransform(smoothScroll, range, [0, 999]);
+  const top           = useTransform(smoothScroll, range, [0, 16]);
+  const logoScale     = useTransform(smoothScroll, range, [1.05, 0.9]);
+  const bgOpacity     = useTransform(smoothScroll, range, [0, 0.85]);
+  const blurAmount    = useTransform(smoothScroll, range, [0, 20]);
+  const shadowOpacity = useTransform(smoothScroll, range, [0, 0.12]);
+  const borderOpacity = useTransform(smoothScroll, range, [0, 1]);
+
+  const background = useTransform(bgOpacity, (v) => `rgba(255, 255, 255, ${v})`);
+  const backdrop   = useTransform(blurAmount, (v) => `blur(${v}px)`);
+  const shadow     = useTransform(shadowOpacity, (v) => `0 10px 40px rgba(0, 0, 0, ${v})`);
+  const borderColor = useTransform(borderOpacity, (v) => `rgba(0, 0, 0, ${v * 0.05})`);
 
   // ── Section Observer – active section spy ──────────────────────────
   useEffect(() => {
@@ -55,6 +61,7 @@ export default function Navbar() {
     );
 
     sectionIds.forEach((id) => {
+      if (id === "") return;
       const el = document.getElementById(id);
       if (el) obs.observe(el);
     });
@@ -75,10 +82,11 @@ export default function Navbar() {
           top,
           background,
           boxShadow: shadow,
+          borderColor,
           backdropFilter: backdrop,
           WebkitBackdropFilter: backdrop,
         }}
-        className="fixed left-1/2 -translate-x-1/2 z-50 border border-white/20 flex items-center justify-between"
+        className="fixed left-1/2 -translate-x-1/2 z-100 border flex items-center justify-between transition-none"
       >
         {/* ── LOGO (Smoothed Scale) ── */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
@@ -91,6 +99,7 @@ export default function Navbar() {
               alt="VEXA TECH" 
               width={40} 
               height={40} 
+              priority
               className="w-full h-full object-contain"
             />
           </motion.div>
@@ -102,13 +111,13 @@ export default function Navbar() {
         {/* ── DESKTOP MENU ── */}
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.href.slice(1);
+            const isActive = activeSection === (link.href.slice(1) || "home");
             return (
               <Link
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "relative px-3 py-1.5 text-[10px] font-black uppercase tracking-widest transition-all duration-300 rounded-full group",
+                  "relative px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-all duration-300 rounded-full group",
                   isActive ? "text-neutral-900" : "text-neutral-500 hover:text-neutral-900"
                 )}
               >
@@ -117,7 +126,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="active-nav-pill"
-                    className="absolute inset-0 rounded-full z-0 bg-neutral-100 border border-neutral-200/40 shadow-sm"
+                    className="absolute inset-0 rounded-full z-0 bg-neutral-100/80 border border-neutral-200/20 shadow-xs"
                     transition={{ type: "spring", bounce: 0.15, duration: 0.8 }}
                   />
                 )}
@@ -130,16 +139,16 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="#contact"
-            className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full font-black text-[9px] uppercase tracking-widest bg-brand-accent text-white hover:bg-brand-accent-hover transition-all duration-300"
+            className="hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full font-black text-[9px] uppercase tracking-widest bg-neutral-900 text-white hover:bg-black transition-all duration-300 shadow-lg shadow-neutral-200/50"
           >
             Contact <ArrowRight size={12} />
           </Link>
 
           <button
-            className="md:hidden p-2 text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors"
+            className="md:hidden p-2.5 text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors active:scale-95"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </motion.nav>

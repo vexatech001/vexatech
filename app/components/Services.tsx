@@ -124,33 +124,34 @@ export default function Services() {
     <section 
       id="services" 
       ref={containerRef} 
-      className="bg-white relative min-h-screen flex flex-col justify-center overflow-hidden"
+      className="bg-white relative overflow-hidden py-24 md:py-32 lg:py-0 lg:min-h-screen lg:flex lg:items-center"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 grid lg:grid-cols-2 gap-10 lg:gap-20 items-center h-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center lg:h-full">
         
         {/* ── LEFT: Content ── */}
-        <div ref={leftContentRef} className="z-20 py-20 lg:py-0">
-          <p className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-5">
-            Our Services
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-neutral-900 leading-[1.1] tracking-tight mb-8">
-            Solutions <span className="text-gradient-primary leading-normal">designed</span> for growth
-          </h2>
-          <p className="text-zinc-500 text-lg font-light leading-relaxed max-w-md mb-10">
-            Multidisciplinary expertise transformed into refined digital execution for modern brands. We build systems that perform as good as they look.
-          </p>
+        <div ref={leftContentRef} className="z-20 relative order-1">
+          <div className="flex flex-col">
+            <span className="text-brand-accent font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-6 inline-block w-fit">
+              Our Services
+            </span>
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl lg:text-7xl font-bold text-neutral-900 leading-[1.1] tracking-tighter mb-10">
+              Solutions <span className="text-gradient-primary">designed</span> for growth
+            </h2>
+            <p className="text-zinc-500 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-md mb-12">
+              Multidisciplinary expertise transformed into refined digital execution for modern brands. We build systems that perform as good as they look.
+            </p>
 
-          <div className="hidden lg:flex items-center gap-4 mt-12 opacity-30">
-            <div className="w-10 h-px bg-neutral-900" />
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Scroll to explore</p>
+            <div className="hidden lg:flex items-center gap-4 mt-12 opacity-30">
+              <div className="w-10 h-px bg-neutral-900" />
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Scroll to explore</p>
+            </div>
           </div>
         </div>
 
         {/* ── RIGHT: Animated Stack ── */}
-        <div className="relative h-auto lg:h-[600px] flex items-center justify-center">
-          
+        <div className="relative z-10 order-2">
           {/* Mobile view: Simple list */}
-          <div className="lg:hidden flex flex-col gap-5 w-full">
+          <div className="lg:hidden flex flex-col gap-6 w-full">
             {services.map((service, i) => (
               <MobileCard key={i} service={service} index={i} />
             ))}
