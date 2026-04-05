@@ -17,7 +17,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 
 const inputBase =
-  "w-full bg-zinc-50 border border-zinc-200 rounded-lg px-3.5 py-3 text-sm text-neutral-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/10 focus:bg-white";
+  "w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3.5 text-base md:text-sm text-neutral-900 placeholder-zinc-400 transition-all duration-200 focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/10 focus:bg-white touch-manipulation";
 
 const labelBase = "block text-[11px] font-bold text-neutral-500 mb-1.5 tracking-widest uppercase";
 

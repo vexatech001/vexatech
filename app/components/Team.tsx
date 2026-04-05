@@ -78,7 +78,7 @@ export default function Team() {
               Visionary Leadership
             </p>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black text-gray-900 leading-[1.1] tracking-tight mb-8 md:whitespace-nowrap">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-gray-900 leading-[1.1] tracking-tight mb-8">
             The <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-indigo-600">minds</span> behind VEXA TECH
           </h2>
           <p className="text-gray-500 text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-medium">

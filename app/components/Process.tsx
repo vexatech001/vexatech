@@ -50,7 +50,7 @@ const TimelineCard = ({ step, index }: { step: typeof steps[0], index: number })
       )}
     >
       {/* Content Side */}
-      <div className="w-full md:w-1/2 px-4 md:px-12 flex justify-center md:block">
+      <div className="w-full md:w-1/2 px-4 md:px-12 flex justify-start md:block pl-16 md:pl-12">
         <motion.div
           initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
           animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
@@ -144,6 +144,7 @@ export default function Process() {
       {/* Background Decor */}
       <div className="absolute top-[10%] left-[5%] w-[40%] h-[40%] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[5%] w-[40%] h-[40%] bg-indigo-50/50 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[40%] right-[5%] w-[30%] h-[30%] bg-pink-50/40 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
@@ -159,10 +160,10 @@ export default function Process() {
               Execution Strategy
             </p>
           </div>
-          <h2 className="text-4xl md:text-7xl font-black text-gray-900 leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-gray-900 leading-[1.1] tracking-tight mb-8">
             How We <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-indigo-600">Work</span>
           </h2>
-          <p className="mt-8 text-gray-500 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-8 text-gray-500 text-base md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
             A blueprint for success, refined through intentional strategy and meticulous engineering excellence.
           </p>
         </motion.div>

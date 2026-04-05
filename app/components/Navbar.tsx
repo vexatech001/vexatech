@@ -175,13 +175,13 @@ export default function Navbar() {
                     key={link.name}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.08 }}
+                    transition={{ delay: i * 0.05 }}
                   >
                     <Link
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        "text-5xl font-black tracking-tighter transition-colors block",
+                        "text-4xl xs:text-5xl font-black tracking-tighter transition-colors block py-1",
                         activeSection === link.href.slice(1) ? "text-neutral-900" : "text-zinc-300 hover:text-neutral-900"
                       )}
                     >
